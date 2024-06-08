@@ -1,0 +1,42 @@
+{% extends 'home\base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block body %}
+<div class="container my-3">
+    <h2 class="display-4">Checkout</h2>
+    <hr>
+    <div class="row mx-5">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+            <img src="{{ product.image }}" class="object-fit-scale rounded border p-5" height="300px" width="300px">
+        </div>
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+            <strong>{{ product.name }} <br>
+                Quantity: {{ product.quantity }} <br>
+                Price: &#8377; {{ product.discount_price|floatformat:2 }}</strong>
+        </div>
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+            <a href="{% url 'home:index' %}" class="btn btn-danger">Remove</a>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h1 class="display-6">Shipping Address
+            <hr>
+        </h1>
+        <h6>{{ user.first_name }} {{user.last_name}}</h6>
+        <div>{{ profile.address1 }}</div>
+        <div>{{ profile.address2 }}</div>
+        <div>{{ profile.city }}, {{ profile.state }} -{{ profile.pincode }}</div>
+        <div>Landmark : {{ profile.landmark }} </div>
+        <div>Phone Number: {{ profile.phone_number }}</div>
+    </div>
+    <hr>
+    <div class="col-lg-2 offset-lg-10 col-4  offset-4 text-start">
+        <h5>Total Items: 1 </h5>
+        <h5>Total Price: &#8377; {{ total_price|floatformat:2 }}</h5>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="text-center btn btn-primary px-lg-5" id="place">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock%}

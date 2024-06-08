@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h1>{{ product.name }}</h1>
+        <hr>
+        <div class="col-xl-8  d-flex justify-content-center  border-start border-end"><img src="{{product.image }}" class="object-fit-scale" height="500px"></div>
+        <div class="col-xl-4">
+        <h3>Description</h3>    
+        <hr>
+        <p>{{ product.desc }}</p>
+        <hr>
+        <h3>Price</h3>
+        <h4>&#8377; {{ product.discount_price|floatformat:2 }}<br><del>&#8377; {{ product.price|floatformat:2 }}</del></h4>
+        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary px-5">Add to Cart</a>
+        <a  href="{% url 'checkout_item' product.id %}" class="btn btn-primary px-5">Buy Now</a>
+        
+        </div>
+    </div>
+</div>
+
+
+
+
+{{ product. }}
+{% endblock %}
+

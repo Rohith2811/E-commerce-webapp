@@ -1,0 +1,103 @@
+{% extends 'home\base.html' %} 
+{% load static %} 
+{% block title %}ShopIt {%endblock %}
+{% block body %}
+
+{% if not search_flag %}
+<div
+  id="carouselExampleAutoplaying"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="{% static 'images/Fashion.png' %}"
+        class="d-block w-100 object-fit-fill"
+        height="350px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'images/electronics.png' %}"
+        class="d-block w-100 object-fit-fill"
+        height="350px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'images/books.png' %}"
+        class="d-block w-100 object-fit-fill"
+        height="350px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{% static 'images/kitchen.png' %}"
+        class="d-block w-100 object-fit-fill"
+        height="350px"
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleAutoplaying"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleAutoplaying"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% else %}
+
+{% endif %}
+<div class="container">
+  <div class="row ">
+    {% for item in products %}
+    <div class="col-xl-3 col-md-6 d-flex justify-content-center">
+    <div class="card my-5 " style="width: 18rem">
+      <a href="{% url 'home:detail' item.id %}">
+      <img
+        src="{{item.image}}"
+        class="card-img-top object-fit-scale border rounded"
+        height="200px"
+        alt="{{ item.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text mb-3">
+          &#8377;{{ item.discount_price|floatformat:2 }} <del>&#8377;{{ item.price|floatformat:2 }}</del>
+        </p></a>
+        <a href="{% url 'add_to_cart' item.id %}" class="btn btn-primary">Add to Cart </a>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+  </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+      <a class="page-link" href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% else %}#{% endif %}">Previous</a>
+    </li>    
+    {% for num in products.paginator.page_range %}
+    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+    {% endfor %}
+    
+    <li class="page-item {% if not products.has_next %} disabled {% endif %}">
+      <a class="page-link" href="{% if products.has_next %}?page={{ products.next_page_number }}{% else %}#{% endif %}">Next</a>
+    </li>
+
+  </ul>
+</nav>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+{% load custom_filters %}
+{% block title %}Login {% endblock %}
+{% block body %}
+<div class="row d-flex align-items-center" style="height: 65vh;">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <div class="card-title display-5 text-white text-center">Login</div>
+      </div>
+      <div class="card-body text-center">
+        <form method="POST">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="my-5">
+              {{ field|add_class:"form-control" }}
+            </div>
+          {% endfor %}
+          {% if form.non_field_errors %}
+            <div class="text-danger">
+              {% for error in form.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+          <button type="submit" class="btn btn-primary">Login</button>
+          <br>
+          <br>
+          New user? <a href="{% url 'register' %}" style="text-decoration: none;">Sign Up</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

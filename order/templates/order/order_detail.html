@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+{% block title %}Order{% endblock %}
+{% block body %}
+<div class="container my-3">
+  <h2 class="display-4">Your Orders</h2>
+  <hr>
+  {% if orders %}
+  {% for order in orders  %}
+  <div class="row mx-5">
+    <div class="col-lg-4 d-flex justify-content-center align-items-center">
+      <img src="{{ order.product.image }}" class="object-fit-scale rounded border p-5" height="300px"
+        width="300px">
+    </div>
+    <div class="col-lg-4 d-flex justify-content-center align-items-center">
+      <strong><div>{{ order.product.name }} </div>
+        <div>Quantity: {{ order.quantity }} </div>
+        <div>Price: &#8377; {{ order.product.discount_price|floatformat:2 }}</div></strong>
+    </div>
+    <div class="col-lg-4 d-flex justify-content-center align-items-center">
+        <p style="color:gray">Order on:<br>
+        {{ order.time }}</p>
+    </div>
+  </div>
+  <hr>
+  {% endfor %}
+  {% else %}
+  <div class="row" style="height: 50vh;">
+    <div class="col-lg-5 offset-lg-4" style="color:gray"><h2 class="display-4">No Past Orders</h2></div>
+  </div>
+  {% endif %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item {% if not orders.has_previous %}disabled{% endif %}">
+        <a class="page-link" href="{% if orders.has_previous %}?page={{ orders.previous_page_number }}{% else %}#{% endif %}">Previous</a>
+      </li>    
+      {% for num in orders.paginator.page_range %}
+      <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+      {% endfor %}
+      
+      <li class="page-item {% if not orders.has_next %} disabled {% endif %}">
+        <a class="page-link" href="{% if orders.has_next %}?page={{ orders.next_page_number }}{% else %}#{% endif %}">Next</a>
+      </li>
+  
+    </ul>
+  </nav>
+</div>
+{% endblock%}

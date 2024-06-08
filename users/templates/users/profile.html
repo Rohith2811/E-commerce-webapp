@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+{% block title %}Profile{% endblock%}
+{% block body %}
+<div class="container my-4">
+<h1 class="display-5">{{ user.first_name }} {{ user.last_name }} </h1>
+<hr>
+<form class="row g-3 mb-3" >
+    <div class="col-md-6">
+        <label class="form-label">User Name</label>
+        <input type="text" value="{{ user.username}}" class="form-control bg-white"  disabled>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control bg-white"  value = "{{ user.email }}" disabled>
+    </div>
+    <div class="col-md-6">
+      <label  class="form-label">Phone Number</label>
+      <input type="number" class="form-control bg-white"  value='{{ profile.phone_number }}'disabled>
+    </div>
+    <div class="col-12">
+      <label  class="form-label">Address</label>
+      <input type="text" class="form-control bg-white"  value="{{ profile.address1 }}" disabled>
+    </div>
+    <div class="col-12">
+      <label  class="form-label">Address 2</label>
+      <input type="text" class="form-control bg-white"  value="{{profile.address2}}" disabled>
+    </div>
+    <div class="col-md-4">
+      <label  class="form-label">City</label>
+      <input type="text" class="form-control bg-white" value="{{ profile.city }}" disabled>
+    </div>
+    <div class="col-md-4">
+      <label  class="form-label">State</label>
+      <input type="text" class="form-control bg-white"  value="{{ profile.state }}" disabled>
+    </div>
+    <div class="col-md-4">
+        <label  class="form-label">landmark</label>
+        <input type="text" class="form-control bg-white"  value="{{ profile.landmark }}" disabled>
+      </div>
+    <div class="col-md-2">
+      <label  class="form-label">Zip</label>
+      <input type="text" class="form-control bg-white"  value="{{profile.pincode}}" disabled>
+    </div>
+  </form>
+  <a href="{%url 'edit_profile' %}" class="btn btn-primary">Edit</a>
+</div>
+{% endblock %}
