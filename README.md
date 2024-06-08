@@ -122,3 +122,33 @@ my_django_project/
 │   ├── urls.py
 │   └── wsgi.py
 └── requirements.txt
+```
+
+## Screenshots
+
+### Login Page
+![Login Page](https://github.com/Rohith2811/E-commerce/assets/91714071/56b1b3df-ec5f-45cc-b1a8-7adc9efe8537)
+
+### Signup Page
+![Signup Page](https://github.com/Rohith2811/E-commerce/assets/91714071/95c4ccf7-5bdd-462f-80f7-9b82c781a3d5)
+
+### Home Page
+![Home Page 1](https://github.com/Rohith2811/E-commerce/assets/91714071/1be9340f-1198-46e3-8b16-36058aa0d66c)
+![Home Page 2](https://github.com/Rohith2811/E-commerce/assets/91714071/8e0a54bb-04a9-41bb-8e40-f34029e99b3d)
+
+
+### Product Detail Page
+![Product Detail Page](https://github.com/Rohith2811/E-commerce/assets/91714071/c8977adb-7734-4403-bc4e-46092f036937)
+
+
+### Cart Page
+![Cart Page](https://github.com/Rohith2811/E-commerce/assets/91714071/c9cdc5be-c2be-4242-9a12-12d056d66f5d)
+
+### Orders Page
+![Orders Page](https://github.com/Rohith2811/E-commerce/assets/91714071/adcc8244-0bc6-4aa0-b023-3805413616c4)
+
+### Profile Page
+![Profile Page ](https://github.com/Rohith2811/E-commerce/assets/91714071/9535988d-2143-4dec-b754-29967b8374c6)
+
+
+
