@@ -3,14 +3,14 @@ from .models import Cart, CartProduct
 from home.models import Product
 from django.contrib.auth.decorators  import login_required
 
-@login_required
+@login_required(login_url='login')
 def cart_detail(request):
     cart,create = Cart.objects.get_or_create(user = request.user)
     cart_products = CartProduct.objects.filter(cart_id = cart.id)
     total_price = sum(cp.quantity * cp.product.discount_price for cp in cart_products)
     return render(request, 'cart/cart_detail.html', {'cart_products': cart_products, 'total_price': total_price})
 
-@login_required
+@login_required(login_url='login')
 def add_to_cart(request,product_id):
     cart, create = Cart.objects.get_or_create(user = request.user)
     product = Product.objects.get(id = product_id)
@@ -20,7 +20,7 @@ def add_to_cart(request,product_id):
     cart_product.save()
     return redirect('cart_detail')
 
-@login_required
+@login_required(login_url='login')
 def minus_from_cart(request,product_id):
     cart = Cart.objects.get(user = request.user)
     product = Product.objects.get(id = product_id)
@@ -32,7 +32,7 @@ def minus_from_cart(request,product_id):
         cart_product.delete()
     return redirect('cart_detail')
 
-@login_required
+@login_required(login_url='login')
 def remove_from_cart(request,product_id):
     cart = Cart.objects.get(user=request.user)
     product = Product.objects.get(id=product_id)
